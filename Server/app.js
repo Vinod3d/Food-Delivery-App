@@ -5,6 +5,8 @@ import connectDB from './db/ConnectDB.js';
 
 const app = express();
 const PORT = APP_PORT;
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     res.send('app is running')
