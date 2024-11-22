@@ -6,4 +6,8 @@ export const {
     CLOUDINARY_API_KEY,
     CLOUDINARY_CLOUD_NAME,
     CLOUDINARY_API_SECRET,
+    DEBUG_MODE,
+    JWT_KEY,
+    JWT_EXPIRES,
+    COOKIE_EXPIRES,
 } = process.env;
