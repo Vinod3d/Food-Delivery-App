@@ -1,17 +1,24 @@
 import express from 'express'
-import { APP_PORT, JWT_KEY, MONGO_URI } from './config/Index.js';
+import { APP_PORT, JWT_KEY, MONGO_URI, FRONTEND_URL } from './config/Index.js';
 import connectDB from './db/ConnectDB.js';
 import fileUpload from 'express-fileupload';
 import imageRoutes from './routes/imageRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import errorHandler from './middleware/errorHandlers.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
 
 
 const app = express();
 const PORT = APP_PORT;
 
 //Middleware
+app.use(cors({
+    origin: FRONTEND_URL,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser(JWT_KEY));
 app.use(express.urlencoded({extended: true}));

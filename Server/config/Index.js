@@ -10,4 +10,5 @@ export const {
     JWT_KEY,
     JWT_EXPIRES,
     COOKIE_EXPIRES,
+    FRONTEND_URL
 } = process.env;

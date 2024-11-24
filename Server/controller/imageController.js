@@ -51,3 +51,25 @@ export const uploadImage = async (req, res, next)=>{
         return next(error);
     }
 }
+
+export const getImages = async (req, res, next)=>{
+    let images;
+    try {
+        const { name } = req.query;
+        if (name) {
+            images = await Image.find({ name });
+        } else {
+            images = await Image.find();
+        }
+
+        if (images.length === 0) {
+            return next(CustomErrorHandler.notFound('No images found'))
+        }
+        res.status(200).json({
+            success: true,
+            data: images,
+          });
+    } catch (error) {
+        next(error);
+    }
+}

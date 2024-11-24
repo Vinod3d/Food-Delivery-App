@@ -1,0 +1,113 @@
+.loginContainer {
+    min-height: 100vh;
+    display: flex;
+  }
+  
+  .loginMain {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+  
+  .logo {
+    width: 180px;
+    height: 53px;
+    margin: 0 auto 1rem
+  }
+  
+  .logo img{
+    width: 100%;
+  }
+  
+  .formContainer {
+    /* max-width: 80%; */
+    width: 95%;
+    margin: auto auto;
+  }
+  
+  .headerText {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .subText {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputContainer {
+    margin-bottom: 1rem;
+  }
+  
+  .inputLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 100px;
+  }
+  
+  .signInButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #ff8a00;
+    color: white;
+    border-radius: 100px;
+    text-align: center;
+    display: inline-block;
+    border: none;
+  }
+  
+  .signInButton:hover {
+    background-color: #e67e00;
+  }
+  
+  .signUpText {
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+  }
+  
+  .link {
+    color: #ff8a00;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .sideImage {
+    display: none;
+    overflow: hidden;
+    height: 93vh;
+    border-radius: 20px;
+  }
+  
+  @media (min-width: 892px) {
+    .loginMain {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  
+    .formContainer {
+      max-width: 450px;
+      width: 70%;
+      margin: auto auto;
+    }
+  
+    .sideImage {
+      display: block;
+      position: relative;
+    }
+  }
+  
