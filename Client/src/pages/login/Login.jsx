@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import styles from './Login.module.css';
+import styles from './login.module.css';
 import { logo1 } from '../../assets/Index.js';
 import AuthSideImage from '../../components/sideImg/AuthSideImage.jsx';
 import Footer from '../../components/footer/Footer.jsx';
