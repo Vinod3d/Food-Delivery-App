@@ -1,0 +1,141 @@
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FAFAFA;
+    height: 50px;
+    border: 1px solid #0000001A;
+    border-radius: 0 0 12px 12px;
+}
+
+.promoBanner{
+    padding: 0 20px;
+    font-size: 15px;
+    display: none;
+}
+
+.promoBanner strong{
+    color: #FC8A06;
+}
+
+.locationInfo{
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    color: #03081F;
+    padding: 6px 10px;
+}
+
+.icon{
+    font-size: 20px;
+}
+
+.address{
+    padding: 0 10px;
+}
+
+.changeLocation{
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    color: #FC8A06;
+    text-decoration: underline;
+    padding: 0 10px;
+}
+
+.cart{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #028643;
+    height: 50px;
+    border-radius: 0 0 12px 12px;
+}
+
+.cartButton{
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-right: 1px solid #ffffff63;
+    width: 130px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    height: 50px;
+}
+
+.cart .icon{
+    padding: 0 10px;
+    width: 50px;
+    color: #fff;
+}
+.cartButton img{
+    width: 22px;;
+}
+
+.mobileHeader{
+    display: none;
+}
+
+@media (max-width:576px){
+    .header{
+        display: none;
+    }
+    .mobileHeader{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mobileHeader .login{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        background: #FC8A06;
+        border: none;
+    }
+
+    .mobileHeader .login .icon{
+        font-size: 30px;
+    }
+
+    .mobileHeader .cartButton{
+        background: #028643;
+        width: 100%;
+        justify-content: center;
+        height: 60px;
+    }
+
+    .mobileHeader .cartButton img{
+        width: 30px;
+    }
+
+    .mobileHeader .locationInfo{
+        grid-column-start: 2;
+    }
+}
+
+@media (max-width:676px){
+    .address{
+        padding: 0 10px;
+        width: 160px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
+@media (min-width:992px){
+    .promoBanner{
+        display: block;
+    }
+}

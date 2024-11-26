@@ -57,7 +57,7 @@ export const getImages = async (req, res, next)=>{
     try {
         const { name } = req.query;
         if (name) {
-            images = await Image.find({ name });
+            images = await Image.find();
         } else {
             images = await Image.find();
         }

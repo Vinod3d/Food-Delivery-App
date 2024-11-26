@@ -20,7 +20,6 @@ const app = express();
 const PORT = APP_PORT;
 
 //Middleware
-app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(cors({
     origin: FRONTEND_URL,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -38,15 +37,18 @@ app.use(
 
 
 // Routes
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-app.get('/', (req, res) => {
+app.get('/check', (req, res) => {
     res.send('app is running')
 });
 
 app.use('/api/images', imageRoutes);
 app.use('/api/user', userRoutes);
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
+// Error Handling Middleware
 app.use(errorHandler);
 
 const start = async ()=>{

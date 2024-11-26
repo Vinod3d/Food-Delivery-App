@@ -1,9 +1,13 @@
-import Styles from './home.module.css'
 
-const Home = () => {
+import Navbar from '../../components/nav/Navbar';
+// import styles from './home.module.css';
+
+function App() {
   return (
-    <div>Home</div>
-  )
+    <div >
+      <Navbar/>
+    </div>
+  );
 }
 
-export default Home
+export default App;
