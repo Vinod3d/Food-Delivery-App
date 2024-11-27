@@ -17,7 +17,7 @@ export const uploadImage = async (req, res, next)=>{
 
         const imageFile = req.files.image;
 
-        const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif"];
+        const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif", "image/svg+xml"];
         if (!allowedMimeTypes.includes(imageFile.mimetype)) {
           return next(CustomErrorHandler.badRequest("Invalid file type. Only JPEG, PNG, and GIF are allowed"));
         }
@@ -57,7 +57,7 @@ export const getImages = async (req, res, next)=>{
     try {
         const { name } = req.query;
         if (name) {
-            images = await Image.find();
+            images = await Image.find({name});
         } else {
             images = await Image.find();
         }

@@ -16,3 +16,11 @@ html, body {
     margin: 0 auto;
     padding: 0 15px;
 }
+
+.mt-50{
+    margin-top: 50px;
+}
+
+.mt-70{
+    margin-top: 70px;
+}

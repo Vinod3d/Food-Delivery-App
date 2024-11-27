@@ -21,9 +21,13 @@ const AuthSideImage = () => {
                 </div>
                 </div>
             ) : (
-                image.map((img) => (
+                image.filter((img) => img.name === 'authImg').map((img) => (
                     <div key={img._id}>
-                      <img src={img.imageUrl.url} alt={img.name} style={{ width: "100%" }} />
+                        <img 
+                            src={img.imageUrl.url} 
+                            alt={img.name} 
+                            style={{ width: "100%" }} 
+                        />
                     </div>
                 ))
             )

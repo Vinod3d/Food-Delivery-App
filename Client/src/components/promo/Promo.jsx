@@ -3,8 +3,10 @@ import Styles from "./promo.module.css";
 import { TiLocation } from "react-icons/ti";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { IoPersonCircle } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Promo = () => {
+  const navigate = useNavigate();
   return (
     <>
       <header className="container">
@@ -28,7 +30,7 @@ const Promo = () => {
       </header>
       
       <div className={Styles.mobileHeader}>
-        <button className={Styles.login}>
+        <button className={Styles.login} onClick={()=>navigate('/login')}>
           <IoPersonCircle className={Styles.icon} />
           Login/Signup
         </button>

@@ -106,8 +106,9 @@
     }
   
     .sideImage {
-      display: block;
+      display: flex;
       position: relative;
+      align-items: center;
     }
   }
   

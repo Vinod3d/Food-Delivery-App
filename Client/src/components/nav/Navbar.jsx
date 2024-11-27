@@ -1,6 +1,6 @@
 import { logo1 } from "../../assets/Index";
 import Style from "./navbar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoPersonCircle, IoClose } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
 import Promo from "../promo/Promo";
@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false); 
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -30,7 +31,7 @@ const Navbar = () => {
             <NavLink>Restaurants</NavLink>
             <NavLink>Track Order</NavLink>
           </nav>
-          <button className={Style.login}>
+          <button className={Style.login} onClick={()=>navigate('/login')}>
             <IoPersonCircle className={Style.icon} />
             Login/Signup
           </button>
@@ -47,7 +48,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`${Style.mobileMenu} ${menuOpen ? Style.open : ""}`}>
         <div className={Style.mobileMenuGroup}>
-          <button className={Style.login}>
+          <button className={Style.login} onClick={()=>navigate('/login')}>
               <IoPersonCircle className={Style.icon} />
               Login/Signup
             </button>

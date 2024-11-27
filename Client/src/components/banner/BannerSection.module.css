@@ -1,0 +1,139 @@
+.bannerContainer {
+    background-color: #f3f4f6;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px; 
+}
+  
+.imageContainer {
+    width: 70%;
+}
+  
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20rem;
+    justify-content: center;
+}
+
+.bannerTitle{
+    width: 75%;
+}
+  
+.title {
+    font-size: 6vw;
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 50px;
+    border-radius: 100px;
+    color: #03081F;
+    white-space: nowrap;
+}
+  
+.titleHighlightOrange {
+    color: #fb923c;
+    text-decoration: underline;
+}
+  
+  
+.description {
+    margin: 1rem; 
+    color: #4b5563;
+    text-align: center;
+    font-size: 18px;
+}
+  
+.appStore{
+    width: 70%;
+}
+
+@media (min-width: 768px) {
+
+    
+    .textContainer {
+        height: 25rem;
+    }
+}
+
+@media (min-width: 992px){
+    .bannerContainer{
+        position: relative;
+        flex-direction: row;
+    }
+
+    .imageContainer {
+        width: 47%;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .textContainer {
+        justify-content: center;
+        margin-left: 42%;
+        height: 30rem;
+    }
+
+    .title {
+        text-align: center;
+        background: #03081F;
+        font-size: 3rem;
+        @media(max-width: 1230px){
+            font-size: 2.5rem;
+        }
+        padding: 0 5vw 0 7vw;
+        border-radius: 100px;
+        color: #fff;
+        white-space: nowrap;
+    }
+}
+
+
+#skeleton {
+    position: relative;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #skeleton .wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .element.box {
+    z-index: 0;
+    left: 70px;
+    top: 36.48px;
+    position: absolute;
+    width: 80%;
+    height: 84%;
+    border-radius: 20px;
+    background-color: rgb(228, 228, 228);
+    animation: shimmer 1.5s infinite linear;
+    background: linear-gradient(
+        to right,
+        #e0e0e0 25%,
+        #f0f0f0 50%,
+        #e0e0e0 75%
+    );
+    background-size: 200% 100%;
+  }
+  
+  @keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+  }
