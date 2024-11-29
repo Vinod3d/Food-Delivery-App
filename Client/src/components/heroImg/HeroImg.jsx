@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 const HeroImg = () => {
     const dispatch = useDispatch();
     const {image, loading } = useSelector((state)=>state.image);
-    console.log(image)
 
     useEffect(()=>{
         dispatch(getImage("hero"));

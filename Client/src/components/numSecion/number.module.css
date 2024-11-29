@@ -1,0 +1,39 @@
+.bg {
+    background-color: #f97316;
+    border-radius: 12px;
+}
+
+.container {
+    padding: 3rem 1rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 1fr);
+    text-align: center;
+}
+
+.numContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem 0rem;
+}
+
+.text3xl {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.subText {
+    color: #fff;
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

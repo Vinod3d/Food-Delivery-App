@@ -26,15 +26,12 @@ const imageSlice = createSlice({
     }
 })
 
-export const getImage = (name) => async(dispatch)=>{
+export const getImage = () => async(dispatch)=>{
     dispatch(imageSlice.actions.getImageRequest());
     try {
         const response = await axios.get(`${baseUrl}/api/images`, {
-            params: {name},
             withCredentials: true
         });
-
-        console.log(response)
 
         dispatch(imageSlice.actions.getImageSuccess(response.data.data));
     } catch (error) {

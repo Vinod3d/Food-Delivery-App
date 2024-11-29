@@ -31,7 +31,7 @@ const BannerSection = () => {
                 <div key={img._id}>
                   <img
                     className={styles.image}
-                    src={img?.imageUrl?.url}
+                    src={img.imageUrl.url}
                     alt={img.name}
                     style={{ width: "100%" }}
                   />

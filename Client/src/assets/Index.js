@@ -3,11 +3,17 @@ import logo2 from './LOGO2.png'
 import appStore from './app-store-badges.png'
 import cart from './cart.png'
 import bannerTitle from './bannerTitle.png'
+import orderFood from './order-food.png'
+import track from './track.png'
+import getOrder from './get-order.png'
 
 export {
     logo1,
     logo2,
     appStore,
     cart,
-    bannerTitle
+    bannerTitle,
+    orderFood,
+    track,
+    getOrder
 }
