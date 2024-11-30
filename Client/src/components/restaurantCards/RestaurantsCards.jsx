@@ -10,7 +10,6 @@ import { getRestaurants } from "../../store/slices/restaurantSlice";
 const RestaurantsCards = () => {
   const dispatch = useDispatch();
   const {restaurants } = useSelector((state)=> state.restaurant);
-  console.log(restaurants)
   useEffect(()=>{
     dispatch(getRestaurants());
   },[dispatch]);

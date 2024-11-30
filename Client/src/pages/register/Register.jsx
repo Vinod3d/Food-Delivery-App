@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 export default function Register() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { loading, error, message } = useSelector((state) => state.user);
+    const {isAuthenticated, loading, error, message } = useSelector((state) => state.user);
     const [formData, setFormData] = useState({
       name: '',
       phone: '',
@@ -29,6 +29,9 @@ export default function Register() {
   };
 
   useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
     if (error) {
         toast.error(error); 
         dispatch(clearErrors());
@@ -99,7 +102,7 @@ export default function Register() {
                   <input
                       id="password"
                       type="password"
-                      placeholder="At least 8 characters"
+                      placeholder="At least 6 characters"
                       className={styles.inputField}
                       value={formData.password}
                       onChange={handleChange}

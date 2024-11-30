@@ -6,6 +6,7 @@ import bannerTitle from './bannerTitle.png'
 import orderFood from './order-food.png'
 import track from './track.png'
 import getOrder from './get-order.png'
+import notFound from './NotFound.jpg'
 
 export {
     logo1,
@@ -15,5 +16,6 @@ export {
     bannerTitle,
     orderFood,
     track,
-    getOrder
+    getOrder,
+    notFound
 }

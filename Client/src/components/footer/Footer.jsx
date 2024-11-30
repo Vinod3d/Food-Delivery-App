@@ -4,12 +4,13 @@ import styles from "./footer.module.css";
 import { logo2, appStore } from "../../assets/Index.js";
 
 export default function Footer() {
+
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.footerTop}>
         <div className={styles.downloadSection}>
           <div className={styles.downloadLinks}>
-            <Link to="#" className={styles.downloadLink}>
+            <Link to="/" className={styles.downloadLink} >
               <img
                 src={logo2}
                 alt="Download on the App Store"

@@ -1,4 +1,5 @@
 
+import { useSelector } from 'react-redux';
 import AboutUs from '../../components/about/AboutUs';
 import BannerSection from '../../components/banner/BannerSection';
 import CardsSection from '../../components/cardSection/CardSection';
@@ -12,9 +13,16 @@ import RestaurantsCards from '../../components/restaurantCards/RestaurantsCards'
 // import styles from './home.module.css';
 
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const userName = user?.user;
+  
   return (
     <div >
-      <Navbar active={'home'}/>
+      <Navbar 
+        active={'home'}
+        isAuthenticated={isAuthenticated}
+        user={userName}
+      />
       <HeroImg/>
       <OfferCard/>
       <CategoryCards/>

@@ -7,9 +7,8 @@ import { IoIosMenu } from "react-icons/io";
 import Promo from "../promo/Promo";
 import { useState } from "react";
 
-const Navbar = ({active}) => {
-  console.log(active)
-  const [menuOpen, setMenuOpen] = useState(false); 
+const Navbar = ({ active, isAuthenticated, user }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -20,23 +19,39 @@ const Navbar = ({active}) => {
     setMenuOpen(false);
   };
 
+  const firstName = user.name.split(' ')[0];
+
   return (
     <div className={Style.headerGroup}>
-      <Promo />
+      <Promo 
+        isAuthenticated={isAuthenticated}
+        user={user}
+      />
       <div className="container">
         <div className={Style.navbar}>
           <img src={logo1} alt="logo" />
           <nav className={Style.deskTopMenu}>
-            <NavLink className={active == 'home' ? Style.active : ""}>Home</NavLink>
-            <NavLink >Browse Menu</NavLink>
+            <NavLink className={active == "home" ? Style.active : ""}>
+              Home
+            </NavLink>
+            <NavLink>Browse Menu</NavLink>
             <NavLink>Special Offers</NavLink>
-            <NavLink className={active == 'restaurant' ? Style.active : ""}>Restaurants</NavLink>
+            <NavLink className={active == "restaurant" ? Style.active : ""}>
+              Restaurants
+            </NavLink>
             <NavLink>Track Order</NavLink>
           </nav>
-          <button className={Style.login} onClick={()=>navigate('/login')}>
-            <IoPersonCircle className={Style.icon} />
-            Login/Signup
-          </button>
+          {isAuthenticated ? (
+            <button className={Style.login} onClick={() => navigate("/profile")}>
+              <IoPersonCircle className={Style.icon} />
+              Hey {firstName}
+            </button>
+          ) : (
+            <button className={Style.login} onClick={() => navigate("/login")}>
+              <IoPersonCircle className={Style.icon} />
+              Login/Signup
+            </button>
+          )}
           <IoIosMenu className={Style.menuIcon} onClick={toggleMenu} />
         </div>
       </div>
@@ -50,10 +65,17 @@ const Navbar = ({active}) => {
       {/* Mobile Menu */}
       <div className={`${Style.mobileMenu} ${menuOpen ? Style.open : ""}`}>
         <div className={Style.mobileMenuGroup}>
-          <button className={Style.login} onClick={()=>navigate('/login')}>
+          {isAuthenticated ? (
+            <button className={Style.login} onClick={() => navigate("/profile")}>
+              <IoPersonCircle className={Style.icon} />
+              Hey {firstName}
+            </button>
+          ) : (
+            <button className={Style.login} onClick={() => navigate("/login")}>
               <IoPersonCircle className={Style.icon} />
               Login/Signup
             </button>
+          )}
           <button className={Style.closeMenu} onClick={closeMenu}>
             <IoClose />
           </button>

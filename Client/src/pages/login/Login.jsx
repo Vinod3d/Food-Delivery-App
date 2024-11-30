@@ -11,11 +11,12 @@ import { toast } from 'react-toastify';
 export default function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { loading, error, message, } = useSelector((state) => state.user);
+    const {isAuthenticated, loading, error, message, } = useSelector((state) => state.user);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+    
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -27,6 +28,9 @@ export default function Login() {
     };
 
     useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
         if (error) {
             toast.error(error);
             dispatch(clearErrors());
@@ -36,7 +40,7 @@ export default function Login() {
             navigate('/');
             dispatch(clearMessage());
         }
-    }, [error, message, navigate, dispatch]);
+    }, [error, message, navigate, dispatch, isAuthenticated]);
   return (
     <>
     
@@ -73,7 +77,7 @@ export default function Login() {
                 <input
                     id="password"
                     type="password"
-                    placeholder="At least 8 characters"
+                    placeholder="At least 6 characters"
                     className={styles.inputField}
                     value={formData.password}
                     onChange={handleChange}
