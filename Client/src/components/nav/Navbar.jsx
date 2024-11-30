@@ -19,7 +19,7 @@ const Navbar = ({ active, isAuthenticated, user }) => {
     setMenuOpen(false);
   };
 
-  const firstName = user.name.split(' ')[0];
+  const firstName = user?.name.split(' ')[0];
 
   return (
     <div className={Style.headerGroup}>

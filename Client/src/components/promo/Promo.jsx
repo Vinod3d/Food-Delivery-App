@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Promo = ({isAuthenticated, user}) => {
   const navigate = useNavigate();
-  const firstName = user.name.split(' ')[0];
+  const firstName = user?.name.split(' ')[0];
   return (
     <>
       <header className="container">
