@@ -7,7 +7,7 @@ import Footer from '../../components/footer/Footer';
 import HeroImg from '../../components/heroImg/HeroImg';
 import Navbar from '../../components/nav/Navbar';
 import NumberSection from '../../components/numSecion/NumberSection';
-import OfferCard from '../../components/offerCard/offerCard';
+import OfferCard from '../../components/offerCard/OfferCard';
 import RestaurantsCards from '../../components/restaurantCards/RestaurantsCards';
 // import styles from './home.module.css';
 
