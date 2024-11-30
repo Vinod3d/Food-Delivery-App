@@ -35,7 +35,7 @@
 }
 
 .primary {
-    background-color: #ff6f00;
+    background-color: #FC8A06;
     color: white;
 }
 
@@ -159,7 +159,7 @@
     }
 
     .tab:first-child {
-        border: 2px solid #ff6f00;
+        border: 2px solid #FC8A06;
         font-weight: 600;
     }
 

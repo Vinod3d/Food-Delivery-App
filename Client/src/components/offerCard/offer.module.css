@@ -1,71 +1,71 @@
+.heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
 
-  .heading {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-  
-  /* Swiper container */
-  .swiper {
-    padding: 1rem 0;
-  }
-  
-  /* Individual slide */
-  .slide {
-    display: flex;
-    justify-content: center;
-  }
-  
-  /* Card styles */
-  .card {
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cardContent {
-    padding: 1rem;
-  }
-  
-  /* Image wrapper */
-  .imageWrapper {
-    position: relative;
-    height: 200px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  
-  /* Image */
-  .image {
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  /* Discount badge */
-  .discountBadge {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    background-color: #2563eb; /* Tailwind's blue-600 equivalent */
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-  }
-  
-  /* Restaurant name */
-  .restaurantName {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Location */
-  .location {
-    font-size: 0.875rem;
-    color: #6b7280; /* Tailwind's gray-500 equivalent */
-  }
-  
+.swiper {
+  padding: 1rem 0;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  border-radius: 12px;
+  min-height: 250px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  object-position: center;
+}
+.cardContent {
+  padding: 1rem;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    245.7deg,
+    rgba(255, 255, 255, 0) 0.94%,
+    rgba(3, 8, 31, 0.19) 51.68%,
+    rgba(3, 8, 31, 0.89) 87.9%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  color: white;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 0rem;
+  right: 1rem;
+  background: #03081f;
+  color: white;
+  padding: 0.65rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.restaurantName {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #fc8a06;
+}
+
+.description {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}

@@ -1,6 +1,7 @@
 import Category from "../models/categorySchema.js";
 import CustomErrorHandler from "../services/CustomErrorHandler.js";
 import cloudinary from "../config/cloudinaryConfig.js"; // Import Cloudinary config
+import Restaurant from "../models/restaurantSchema.js";
 
 export const createCategory = async (req, res, next) => {
 
@@ -37,6 +38,12 @@ export const createCategory = async (req, res, next) => {
     });
 
     await newCategory.save();
+
+    await Restaurant.findByIdAndUpdate(
+      restaurant,
+      { $push: { categories: newCategory._id } },
+      { new: true }
+    );
 
     res.status(201).json({
       message: "Category created successfully",
@@ -79,6 +86,37 @@ export const getAllCategories = async (req, res, next) => {
 
     res.status(200).json({
       message: "Categories fetched successfully",
+      data: categories,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const getUniqueCategories = async (req, res, next) => {
+  try {
+    const categories = await Category.aggregate([
+      {
+        $group: {
+          _id: { $toLower: "$name" },
+          icon: { $first: "$icon" },
+          restaurantCount: { $sum: 1 },
+          restaurants: { $addToSet: "$restaurant" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          name: "$_id",
+          icon: 1,
+          restaurantCount: 1,
+          restaurants: 1,
+        },
+      },
+    ]);
+
+    res.status(200).json({
+      message: "Unique categories fetched successfully",
       data: categories,
     });
   } catch (error) {

@@ -1,5 +1,6 @@
 import cloudinary from "../config/cloudinaryConfig.js";
 import Offer from "../models/offerSchema.js";
+import Restaurant from "../models/restaurantSchema.js";
 import CustomErrorHandler from "../services/CustomErrorHandler.js";
 
 export const createOffer = async (req, res, next) => {
@@ -39,6 +40,12 @@ export const createOffer = async (req, res, next) => {
     });
 
     await newOffer.save();
+
+    await Restaurant.findByIdAndUpdate(
+      restaurant,
+      { $push: { offers: newOffer._id } },
+      { new: true }
+    );
 
     res.status(201).json({
       message: "Offer created successfully",

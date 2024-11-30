@@ -56,9 +56,9 @@
     display: inline-block;
 }
 .inputGroup{
-    padding: 12px;
-    border: 1px solid #00000066;
-    width: 60%;
+    /* padding: 12px; */
+    border: 1px solid #7c6b6b66;
+    width: 250px;
     border-radius: 100px;
     position: relative;
     margin: 20px auto;
@@ -67,8 +67,9 @@
 
 .inputGroup input{
     border: none;
-    padding: 0 10px;
+    padding: 10px;
     background: none;
+    outline: none;
 }
 
 .inputGroup button{
@@ -161,7 +162,7 @@
 
     .inputGroup{
         padding: 12px;
-        border: 1px solid #00000066;
+        border: 1px solid #7c6b6b66;
         width: 30%;
         margin-top: 10px;
         border-radius: 100px;
