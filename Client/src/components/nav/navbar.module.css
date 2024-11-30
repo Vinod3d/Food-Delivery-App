@@ -9,6 +9,13 @@
     height: 120px;
   }
   
+  .active{
+    background: #fc8a06;
+    padding: 10px 20px;
+    width: fit-content;
+    color: #fff !important;
+    border-radius: 100px;
+  }
   .navbar img {
     width: 190px;
   }

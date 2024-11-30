@@ -4,6 +4,10 @@ import connectDB from './db/ConnectDB.js';
 import fileUpload from 'express-fileupload';
 import imageRoutes from './routes/imageRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import restaurantRoutes from './routes/restaurantRoutes.js'
+import categoryRoutes from "./routes/categoryRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
+import offerRoutes from "./routes/offerRoutes.js";
 import errorHandler from './middleware/errorHandlers.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -43,6 +47,10 @@ app.get('/check', (req, res) => {
 
 app.use('/api/images', imageRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/restaurant', restaurantRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/items", itemRoutes);
+app.use("/api/offers", offerRoutes);
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));

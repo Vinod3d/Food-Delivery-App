@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { logo1 } from "../../assets/Index";
 import Style from "./navbar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -6,7 +7,8 @@ import { IoIosMenu } from "react-icons/io";
 import Promo from "../promo/Promo";
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({active}) => {
+  console.log(active)
   const [menuOpen, setMenuOpen] = useState(false); 
   const navigate = useNavigate();
 
@@ -25,10 +27,10 @@ const Navbar = () => {
         <div className={Style.navbar}>
           <img src={logo1} alt="logo" />
           <nav className={Style.deskTopMenu}>
-            <NavLink className={Style.active}>Home</NavLink>
-            <NavLink>Browse Menu</NavLink>
+            <NavLink className={active == 'home' ? Style.active : ""}>Home</NavLink>
+            <NavLink >Browse Menu</NavLink>
             <NavLink>Special Offers</NavLink>
-            <NavLink>Restaurants</NavLink>
+            <NavLink className={active == 'restaurant' ? Style.active : ""}>Restaurants</NavLink>
             <NavLink>Track Order</NavLink>
           </nav>
           <button className={Style.login} onClick={()=>navigate('/login')}>
