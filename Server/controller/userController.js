@@ -1,4 +1,5 @@
 import Joi from "joi";
+import cloudinary from "../config/cloudinaryConfig.js";
 import CustomErrorHandler from "../services/CustomErrorHandler.js";
 import User from "../models/userSchema.js";
 import { JwtService } from "../services/JwtService.js";
@@ -106,8 +107,8 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 
-export const getUserById = async (req, res, next) => {
-  const { id } = req.params;
+export const getUser = async (req, res, next) => {
+  const  id  = req.user._id;
 
   try {
     const user = await User.findById(id)
@@ -118,8 +119,61 @@ export const getUserById = async (req, res, next) => {
       return next(CustomErrorHandler.notFound('user not found'));
     }
 
-    return res.status(200).json(user);
+    return res.status(200).json({user});
   } catch (error) {
     return next(error);
   }
 };
+
+
+export const updateUserProfile = async (req, res, next)=>{
+  try {
+    const userId = req.user._id;
+    const { name, email, gender, country, phone } = req.body;
+
+    let profileImage;
+    if (req.files && req.files.profile_image) {
+      const imageFile = req.files.profile_image;
+      
+      const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif", "image/svg+xml"];
+      if (!allowedMimeTypes.includes(imageFile.mimetype)) {
+        return next(CustomErrorHandler.badRequest("Invalid file type. Only JPEG, PNG, and GIF are allowed"));
+      }
+
+      const cloudinaryResponse = await cloudinary.uploader.upload(imageFile.tempFilePath, {
+        folder: "profile-images",
+      });
+
+      if (!cloudinaryResponse || cloudinaryResponse.error) {
+        return next(CustomErrorHandler.badRequest("Cloudinary Error: " + (cloudinaryResponse.error || "Unknown error")));
+      }
+
+      profileImage = cloudinaryResponse.secure_url;
+    }
+
+    const updateFields = {};
+    if (name) updateFields.name = name;
+    if (email) updateFields.email = email;
+    if (gender) updateFields.gender = gender;
+    if (country) updateFields.country = country;
+    if (profileImage) updateFields.profile_image = profileImage;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: updateFields },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedUser) {
+      return next(CustomErrorHandler.badRequest("User not found"));
+    }
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      user: updatedUser,
+    });
+
+  } catch (error) {
+    return next(error);
+  }
+}

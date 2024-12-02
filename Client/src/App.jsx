@@ -5,9 +5,10 @@ import Register from "./pages/register/Register";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from "./components/PrivateRoute";
-import Profile from "./pages/profile/Profile";
+import Profile from "./pages/profile/ProfilePage";
 import NotFound from "./pages/not_found/NotFound";
 import Address from "./pages/address/Address";
+import RestaurantPage from "./pages/restaurantpage/RestaurantPage";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
           <Route path="/address" element={<PrivateRoute element={<Address/>} />} />
+          <Route path="/restaurant" element={<RestaurantPage/>} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <ToastContainer position='top-right' />

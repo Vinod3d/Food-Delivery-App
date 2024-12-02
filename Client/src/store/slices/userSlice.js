@@ -106,6 +106,24 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.message = null;
         },
+
+        // getUser
+
+        getUserRequest: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+
+        getUserSuccess: (state, action) => {
+            state.loading = false;
+            state.user = action.payload;
+            state.error = null;
+        },
+
+        getUserFailed: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
       
 
        
@@ -191,29 +209,42 @@ export const checkAuthSession = () => async(dispatch) =>{
     }
 }
 
-
-
-export const updateUser = (userData) => async (dispatch) => {
+export const updateUser = (userData, userId) => async (dispatch) => {
     dispatch(userSlice.actions.updateUserRequest());
     try {
-      const response = await axios.patch(
-        `${baseUrl}/api/user/update`,
-        userData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
+      const response = await axios.put(
+        `${baseUrl}/api/user/update/${userId}`,
+        userData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+            withCredentials: true,
         }
       );
   
       dispatch(userSlice.actions.updateUserSuccess(response.data));
-      dispatch(userSlice.actions.clearErrors());
+      return true;
     } catch (error) {
-      dispatch(userSlice.actions.updateUserFailed(error.response?.data.message || "Update failed"));
+      dispatch(userSlice.actions.updateUserFailed(error.response.data.message));
+      return false;
     }
 };
 
+
+export const getUser = () => async (dispatch) => {
+    dispatch(userSlice.actions.getUserRequest());
+    try {
+      const response = await axios.get(`${baseUrl}/api/user`, {
+        withCredentials: true,
+      });
+
+      console.log(response)
+      dispatch(userSlice.actions.getUserSuccess(response.data));
+    } catch (error) {
+      dispatch(userSlice.actions.getUserFailed(error.response.data.message));
+    }
+  };
+  
 
 
 export const clearErrors = () => (dispatch) => {

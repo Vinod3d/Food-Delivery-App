@@ -7,6 +7,7 @@ import orderFood from './order-food.png'
 import track from './track.png'
 import getOrder from './get-order.png'
 import notFound from './NotFound.jpg'
+import profilePic from './profile.jpg'
 
 export {
     logo1,
@@ -17,5 +18,6 @@ export {
     orderFood,
     track,
     getOrder,
-    notFound
+    notFound,
+    profilePic
 }

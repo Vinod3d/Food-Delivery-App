@@ -1,4 +1,4 @@
-
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getRestaurants } from "../../store/slices/restaurantSlice";
 
 const RestaurantsCards = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const {restaurants } = useSelector((state)=> state.restaurant);
   useEffect(()=>{
@@ -31,7 +32,7 @@ const RestaurantsCards = () => {
       >
         {restaurants?.map((item) => (
           <SwiperSlide key={item._id} className={styles.slide}>
-            <div className={styles.card}>
+            <div className={styles.card} onClick={()=>navigate("/restaurant")}>
                 <div className={styles.cardImageContainer}>
                     <img
                     src={item.logo}
