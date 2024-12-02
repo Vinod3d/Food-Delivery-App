@@ -8,6 +8,7 @@ import restaurantRoutes from './routes/restaurantRoutes.js'
 import categoryRoutes from "./routes/categoryRoutes.js";
 import itemRoutes from "./routes/itemRoutes.js";
 import offerRoutes from "./routes/offerRoutes.js";
+import addressRoutes from "./routes/addressRoutes.js";
 import errorHandler from './middleware/errorHandlers.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -49,6 +50,7 @@ app.use('/api/restaurant', restaurantRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/items", itemRoutes);
 app.use("/api/offers", offerRoutes);
+app.use("/api/address", addressRoutes);
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));

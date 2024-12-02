@@ -32,6 +32,12 @@
     font-size: 20px;
 }
 
+.addressWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .address{
     padding: 0 10px;
     margin: 0;

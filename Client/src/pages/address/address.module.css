@@ -1,0 +1,192 @@
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .iconButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Address Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  
+  .addAddress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    background: #f9f9f9;
+    cursor: pointer;
+    min-width: 320px;
+    font-size: 18px;
+  }
+
+  .addAddress .icon{
+    background: #ede5cc8f;
+    padding: 8px;
+    border-radius: 50%;
+    color: #FC8A06 !important;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 12px;
+    position: relative;
+    min-width: 320px;
+  }
+  
+  .defaultCard {
+    border: 2px solid orange;
+    box-shadow: 0 0 8px orange;
+  }
+  
+
+  .defaultBadge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: orange;
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+
+.btnGroup{
+    display: flex;
+    gap: 10px;
+}
+  /* Buttons */
+  .editButton,
+  .removeButton,
+  .defaultButton {
+    display: block;
+    margin-top: 8px;
+    padding: 3px 15px;
+    /* background: #007bff; */
+    background: #fff;
+    /* color: white; */
+    color: #FC8A06;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 0;
+    border-right: 1px;
+    border-right-style: solid;
+    border-right-color: #FC8A06;
+    cursor: pointer;
+  }
+  
+  .defaultButton {
+    background: green;
+    color: #fff;
+    border-radius: 5px;
+    border-right: 0px;
+  }
+  
+  /* Modal */
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .formTitle{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-weight: 500;
+  }
+  .input {
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .textarea{
+    resize: none;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .submitButton {
+    background:#FC8A06;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancelButton {
+    background: #f5f5f5;
+    color: #333;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
+  @media (min-width: 992px){
+    .modal {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 70%;
+      width: 100%;
+    }
+    .form{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .textarea{
+      grid-column: span 4;
+    }
+  }

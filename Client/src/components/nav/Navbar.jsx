@@ -6,10 +6,13 @@ import { IoPersonCircle, IoClose } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
 import Promo from "../promo/Promo";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
-const Navbar = ({ active, isAuthenticated, user }) => {
+const Navbar = ({ active }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const User = user?.user;
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -19,19 +22,19 @@ const Navbar = ({ active, isAuthenticated, user }) => {
     setMenuOpen(false);
   };
 
-  const firstName = user?.name.split(' ')[0];
+  const firstName = User?.name.split(' ')[0];
 
   return (
     <div className={Style.headerGroup}>
       <Promo 
         isAuthenticated={isAuthenticated}
-        user={user}
+        user={User}
       />
       <div className="container">
         <div className={Style.navbar}>
-          <img src={logo1} alt="logo" />
+          <img src={logo1} alt="logo" onClick={()=>navigate('/')}/>
           <nav className={Style.deskTopMenu}>
-            <NavLink className={active == "home" ? Style.active : ""}>
+            <NavLink to={"/"} className={active == "home" ? Style.active : ""}>
               Home
             </NavLink>
             <NavLink>Browse Menu</NavLink>

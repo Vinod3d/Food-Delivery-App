@@ -15,23 +15,36 @@ const userSchema = new mongoose.Schema(
             required: true,
             trim: true,
             unique: true,
-            lowercase: true
+            lowercase: true,
+            trim: true 
         },
         password: {
             type: String,
             required: true,
             trim: true,
             minlength: 6,
+            trim: true
         },
         phone:{
             type:String,
             required:true,
             trim:true,
         },
-        address:{
-            type:String,
-            trim:true,
+        profile_image: { 
+            type: String, 
+            trim: true,
         },
+        gender: { 
+            type: String, 
+            enum: ["male", "female", "other"], 
+            trim: true 
+        },
+        country: { 
+            type: String, 
+            trim: true 
+        },
+        addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Address" }],
+        // payment_cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "PayCards" }],
     },
     {timestamps: true}
 );
