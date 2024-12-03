@@ -8,6 +8,7 @@ import offerReducer from './slices/offerSlice.js';
 import categoryReducer from './slices/categorySlice.js';
 import restaurantReducer from './slices/restaurantSlice.js';
 import addressReducer from './slices/addressSlice.js';
+import payCardReducer from './slices/payCardSlice.js';
 
 const userPersistConfig = {
     key: 'user',
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     category: categoryReducer,
     restaurant: restaurantReducer,
     address: addressReducer,
+    payCard: payCardReducer,
 });
 
 const store = configureStore({

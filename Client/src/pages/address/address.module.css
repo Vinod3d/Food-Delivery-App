@@ -21,7 +21,8 @@
   /* Address Grid */
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* grid-template-columns: repeat(3, 1fr); */
     gap: 16px;
   }
   
@@ -35,8 +36,9 @@
     border-radius: 12px;
     background: #f9f9f9;
     cursor: pointer;
-    min-width: 320px;
+    /* max-width: 380px; */
     font-size: 18px;
+    min-height: 200px;
   }
 
   .addAddress .icon{

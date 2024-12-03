@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
             trim: true 
         },
         addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Address" }],
-        // payment_cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "PayCards" }],
+        payment_cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "PayCards" }],
     },
     {timestamps: true}
 );

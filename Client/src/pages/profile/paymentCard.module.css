@@ -1,3 +1,31 @@
+.paymentCardGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 350px));
+  gap: 16px;
+}
+
+
+.addCardButton{
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background: #fff;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.addButtonIcon{
+  color: #FF8A00;
+  background: #FFF3E6;
+  padding: 10px;
+  font-size: 40px;
+  border-radius: 100px;
+}
+
 .cardContainer {
     display: flex;
     align-items: center;
@@ -5,11 +33,33 @@
     padding: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-bottom: 16px;
   }
   
   .cardInfo {
     font-size: 14px;
+  }
+
+  .group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .cardIcon{
+    color: #FF8A00;
+    background: #FFF3E6;
+    padding: 10px;
+    font-size: 40px;
+    border-radius: 100px;
+  }
+
+  .cardNum{
+    margin: 0;
+  }
+
+  .cardHolder{
+    margin: 0;
   }
   
   .cardActions {
@@ -25,8 +75,9 @@
   }
   
   .editButton {
-    background-color: #007bff;
-    color: white;
+    background: #fff;
+    color: #000;
+    font-size: 15px;
   }
   
   .removeButton {
@@ -34,3 +85,18 @@
     color: white;
   }
   
+
+  @media (max-width: 576px){
+
+    .addCardButton{
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 992px){
+    .paymentCardGroup {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 16px;
+    }
+  }

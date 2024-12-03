@@ -14,6 +14,7 @@ export default function AddressesPage() {
   const dispatch = useDispatch();
   const {user} = useSelector((state) => state.user);
   const {addresses} = useSelector((state)=>state.address);
+
   const userId = user?.user?._id;
 
   useEffect(() => {
@@ -27,7 +28,6 @@ export default function AddressesPage() {
   const [editingAddress, setEditingAddress] = useState(null);
 
   const handleAddAddress = async (data) => {
-    console.log(data)
     const newAddress = {
       ...data,
       isDefault: addresses.length === 0,
@@ -96,7 +96,11 @@ const handleSetDefault = async (id) => {
         </div>
 
         <div className={styles.grid}>
-          <button className={styles.addAddress} onClick={() => handleOpenForm()}>
+          <button 
+          className={styles.addAddress} 
+          onClick={() => handleOpenForm()} 
+          style={{width : addresses.length<1 ? "380px": 'auto'}}
+          >
             <FaPlus className={styles.icon}/>
             <span>Add Address</span>
           </button>
