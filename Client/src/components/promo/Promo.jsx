@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { getAddresses } from "../../store/slices/addressSlice.js";
 
 const Promo = ({isAuthenticated, user}) => {
-  const userId = user._id;
+  const userId = user?._id;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {addresses} = useSelector((state)=>state.address);

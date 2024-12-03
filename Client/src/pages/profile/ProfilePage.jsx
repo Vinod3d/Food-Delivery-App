@@ -4,8 +4,8 @@ import styles from "./profile.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../store/slices/userSlice";
-import { PaymentCardComponent } from "./PaymentCardComponent";
-import PaymentCardsPage from "./PaymentCardPage";
+// import { PaymentCardComponent } from "./PaymentCardComponent";
+// import PaymentCardsPage from "./PaymentCardPage";
 import Navbar from "../../components/nav/Navbar";
 import Footer from "../../components/footer/Footer";
 
@@ -74,7 +74,7 @@ export default function ProfilePage() {
         />
 
         {/* Payment Cards Section */}
-        <PaymentCardsPage/>
+        {/* <PaymentCardsPage/> */}
       </div>
       <Footer/>
     </>
