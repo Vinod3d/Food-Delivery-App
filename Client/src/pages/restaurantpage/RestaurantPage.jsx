@@ -1,5 +1,5 @@
 
-import styles from './restaurant.module.css'
+// import styles from './restaurant.module.css'
 import Navbar from '../../components/nav/Navbar';
 import Footer from '../../components/footer/Footer';
 import RestaurantsCards from '../../components/restaurantCards/RestaurantsCards';

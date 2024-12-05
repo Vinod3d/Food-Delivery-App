@@ -39,7 +39,7 @@ const Navbar = ({ active }) => {
             </NavLink>
             <NavLink>Browse Menu</NavLink>
             <NavLink>Special Offers</NavLink>
-            <NavLink className={active == "restaurant" ? Style.active : ""}>
+            <NavLink to={"/restaurant"} className={active == "restaurant" ? Style.active : ""}>
               Restaurants
             </NavLink>
             <NavLink>Track Order</NavLink>
