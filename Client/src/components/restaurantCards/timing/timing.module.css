@@ -1,0 +1,91 @@
+.timingContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    /* padding: 4rem 2rem; */
+    border-radius: 12px;
+    background-color: #FBFBFB;
+    box-shadow: 5px 5px 14px 0px #00000040;
+  }
+  
+  .timingCard {
+    /* background: #ffffff; */
+    border-radius: 8px;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+    padding: 4rem 2rem;
+  }
+  
+  /* .delivery {
+    border-left: 5px solid #f97316;
+  }
+  
+  .contact {
+    border-left: 5px solid #4caf50;
+  }
+  
+  */
+  .operational {
+    padding: 4rem 2rem;
+    background: #03081F !important;
+    color: #fff;
+    border-radius: 0 12px 12px 0;
+  } 
+
+  .operational h2{
+    color: #fff;
+  }
+
+  .timingCard h2{
+    text-transform: capitalize !important;
+  }
+  
+  .timingList {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .timingItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  .timingItem + span{
+    font-weight: 700;
+  }
+  
+  .allergyInfo {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555555;
+  }
+  
+  .contactDetails {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .contactItem {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .contactItem a {
+    color: #1e88e5;
+    text-decoration: none;
+  }
+  
+  .contactItem a:hover {
+    text-decoration: underline;
+  }
+  
+
+  @media (max-width: 992px){
+    .timingContainer{
+        display: none;
+    }
+  }

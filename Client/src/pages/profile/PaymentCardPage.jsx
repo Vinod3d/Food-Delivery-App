@@ -4,15 +4,15 @@ import { PaymentCardModal } from "./PaymentCardModal";
 import { FaPlus } from "react-icons/fa6";
 import styles from "./paymentCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getCardsByUser } from "../../store/slices/payCardSlice";
+import { addCard, clearErrors, deleteCard, editCard, getCardsByUser } from "../../store/slices/payCardSlice";
 import { FiEdit3 } from "react-icons/fi";
 import { LuCreditCard } from "react-icons/lu";
+import { toast } from 'react-toastify';
 
 
 export default function PaymentCardsPage() {
   const dispatch = useDispatch();
-  const { cards } = useSelector((state) => state.payCard);
-  console.log(cards);
+  const { cards, error } = useSelector((state) => state.payCard);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,29 +30,46 @@ export default function PaymentCardsPage() {
     setIsModalOpen(false);
   };
 
-  const handleSaveCard = (cardData) => {
-    // if (selectedCard) {
-    //   // Edit existing card
-    //   setCards((prevCards) =>
-    //     prevCards.map((card) =>
-    //       card.id === selectedCard.id ? { ...card, ...cardData } : card
-    //     )
-    //   );
-    // } else {
-    //   // Add new card
-    //   setCards((prevCards) => [
-    //     ...prevCards,
-    //     { id: Date.now(), ...cardData, lastFour: cardData.cardNumber.slice(-4) },
-    //   ]);
-    // }
-    // closeModal();
+  const handleSaveCard = async (cardData) => {
+    if (selectedCard) {
+      const result = await dispatch(editCard(selectedCard._id, cardData));
+      if (result) {
+        toast.success("Card updated successfully!");
+        dispatch(getCardsByUser());
+      }
+    } else {
+      const result = await dispatch(addCard(cardData));
+      if (result) {
+        toast.success("Card added successfully!");
+        dispatch(getCardsByUser());
+      }
+    }
+    closeModal();
   };
 
-  const handleRemoveCard = (id) => {};
+  const handleRemoveCard = async (cardId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this card?");
+    if (!confirmed) return;
+
+    const result = await dispatch(deleteCard(cardId));
+    if (result) {
+      toast.success("Card removed successfully.");
+      dispatch(getCardsByUser()); // Refresh the card list
+    } else {
+      toast.error("Failed to remove card.");
+    }
+  };
+
+  useEffect(()=>{
+    if(error){
+      toast.error(error)
+      dispatch(clearErrors())
+    }
+  })
 
   return (
     <div>
-      <h1>Payment Cards</h1>
+      <p className={styles.title}>Payment Cards</p>
       <div className={styles.paymentCardGroup}>
         {cards?.map((card) => (
           <div className={styles.cardContainer} key={card.id}>
@@ -60,7 +77,7 @@ export default function PaymentCardsPage() {
               <LuCreditCard className={styles.cardIcon}/>
               <div className={styles.cardInfo}>
                 <p className={styles.cardNum}>
-                  **** **** **** {card.cardNumber.slice(-4)}
+                  XXXX XXXX XXXX {card.cardNumber.slice(-4)}
                 </p>
                 <p className={styles.cardHolder}>{card.nameOnCard}</p>
               </div>
@@ -68,7 +85,7 @@ export default function PaymentCardsPage() {
             <div className={styles.cardActions}>
               <button
                 className={`${styles.actionButton} ${styles.editButton}`}
-                onClick={() => onEdit(card)}
+                onClick={() => openModal(card)}
               >
                 <FiEdit3 />
               </button>
@@ -90,6 +107,7 @@ export default function PaymentCardsPage() {
         isOpen={isModalOpen}
         onClose={closeModal}
         onSave={handleSaveCard}
+        onRemove={handleRemoveCard}
         card={selectedCard}
       />
     </div>

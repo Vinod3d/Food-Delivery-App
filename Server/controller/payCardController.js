@@ -1,9 +1,33 @@
 import PayCard from "../models/payCardSchema.js";
 import User from "../models/userSchema.js";
+import CustomErrorHandler from "../services/CustomErrorHandler.js";
+
 
 export const addCardController = async (req, res, next) => {
   const { cardNumber, expiration, cvc, nameOnCard } = req.body;
   const userId = req.user._id;
+
+
+    // Validate card number
+    if (!/^[0-9]{16}$/.test(cardNumber)) {
+      return next(CustomErrorHandler.badRequest("Card number must be exactly 16 digits and numeric."));
+    }
+  
+    // Validate expiration date
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiration)) {
+      return next(CustomErrorHandler.badRequest("Expiration date must be in the format MM/YY."));
+    }
+  
+    // Validate CVC
+    if (!/^[0-9]{3,4}$/.test(cvc)) {
+      return next(CustomErrorHandler.badRequest("CVC must be a numeric value of 3 or 4 digits."));
+    }
+  
+    // Validate name on card
+    if (typeof nameOnCard !== "string" || nameOnCard.trim().length < 3) {
+      return next(CustomErrorHandler.badRequest("Name on card must be at least 3 characters long."));
+    }
+  
 
   try {
     const newCard = new PayCard({ cardNumber, expiration, cvc, nameOnCard, user: userId });

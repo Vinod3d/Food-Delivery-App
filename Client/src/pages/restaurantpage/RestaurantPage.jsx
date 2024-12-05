@@ -1,29 +1,35 @@
-import { useDispatch, useSelector } from 'react-redux';
+
 import styles from './restaurant.module.css'
+import Navbar from '../../components/nav/Navbar';
+import Footer from '../../components/footer/Footer';
+import RestaurantsCards from '../../components/restaurantCards/RestaurantsCards';
+import CustomerReviews from '../../components/reivew/CustomerReviews';
+import LocationMap from '../../components/map/LocationMap';
+import TimingSection from '../../components/restaurantCards/timing/TimingSection';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getImage } from '../../store/slices/imageSlice';
+import { getRestaurantById } from '../../store/slices/restaurantSlice';
 
 const RestaurantPage = () => {
-  const dispatch = useDispatch()
-    const {image, loading} = useSelector((state)=>state.image);
+  const dispatch = useDispatch();
+  const {restaurant} = useSelector((state)=>state.restaurant);
+  const MDonalId = "67494b84ebaef9e2d17b7e3c"
 
-    useEffect(()=>{
-        dispatch(getImage("authImg"));
-    }, [dispatch]);
+  console.log(restaurant)
+  
+  useEffect(()=>{
+    dispatch(getRestaurantById(MDonalId))
+  },[dispatch])
+
+
   return (
     <>
-       {
-
-                image.filter((img) => img.name === 'construction').map((img) => (
-                    <div key={img._id}>
-                        <img 
-                            src={img.imageUrl.url} 
-                            alt={img.name} 
-                            style={{ width: "60%",  }} 
-                        />
-                    </div>
-                ))
-       }
+       <Navbar/>
+        <TimingSection/>
+        <LocationMap/>
+        <CustomerReviews/>
+        <RestaurantsCards/>
+       <Footer/>
 
          
     </>

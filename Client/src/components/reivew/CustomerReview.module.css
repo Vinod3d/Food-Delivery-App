@@ -1,0 +1,171 @@
+.review{
+  background: #D9D9D9;
+  margin-top: 100px;
+}
+
+.reviewContainer {
+  max-width: 1528px;
+  margin: 0 auto;
+  padding: 0px 15px 80px;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 30px 0;
+}
+
+.header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.carousel {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.reviewCard {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  border-radius: 50%;
+  margin-bottom: 16px;
+  width: auto;
+}
+
+
+.cardGroup{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profileGroup{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 200px;
+}
+
+.nameGroup{
+  border-left: 3px solid #FF8A00;
+  padding-left: 10px;
+  height: 40px;
+}
+
+.reviewContent h3 {
+  font-size: 0.7rem !important;
+  font-weight: 500;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+
+.location{
+  color: #FF8A00;
+  font-size: 14px;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.dateContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+}
+
+.locationDate {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.reviewText {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.activeStar {
+  color: #f97316;
+}
+
+.inactiveStar {
+  color: #e5e7eb;
+}
+
+
+
+
+
+.btnGroup{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+
+.icon{
+  background: #FF8A00;
+  font-size: 45px;
+  padding: 12px;
+  border-radius: 50px;
+}
+
+.ratingRation{
+  background: #fff;
+  width: 130px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.ratingRation .averageRation{
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.numOfReview{
+  margin: 0;
+}
+
+@media (max-width: 776px){
+  .ratingRation{
+    top: -50px;
+    right: 20px;
+    bottom: auto;
+  }
+
+  .btnGroup{
+    position: absolute;
+    top: auto;
+    bottom: -10;
+    left: 45%;
+    display: flex;
+    gap: 20px;
+    z-index: 50000000;
+  }
+}

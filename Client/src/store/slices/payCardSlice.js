@@ -63,6 +63,12 @@ const payCardSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+
+    clearErrors: (state) => {
+      state.error = null;
+    },
+
   },
 });
 
@@ -74,7 +80,7 @@ export const getCardsByUser = () => async (dispatch) => {
     const response = await axios.get(`${baseUrl}/api/paycards/cards`, {
       withCredentials: true,
     });
-    console.log(response.data.cards);
+
     dispatch(payCardSlice.actions.getCardsSuccess(response.data.cards));
   } catch (error) {
     dispatch(
@@ -89,27 +95,32 @@ export const getCardsByUser = () => async (dispatch) => {
 export const addCard = (cardData) => async (dispatch) => {
   dispatch(payCardSlice.actions.addCardRequest());
   try {
-    const response = await axios.post(`${baseUrl}/api/cards`, cardData, {
+    const response = await axios.post(`${baseUrl}/api/paycards/card`, cardData, {
       withCredentials: true,
     });
     dispatch(payCardSlice.actions.addCardSuccess(response.data.card));
+    return true;
   } catch (error) {
     dispatch(
       payCardSlice.actions.addCardFailure(
         error.response?.data?.message || "Failed to add card"
       )
     );
+    return false;
   }
 };
 
 // Edit a card
 export const editCard = (cardId, updatedData) => async (dispatch) => {
+  console.log(cardId, updatedData)
   dispatch(payCardSlice.actions.editCardRequest());
   try {
-    const response = await axios.put(`${baseUrl}/api/cards/${cardId}`, updatedData, {
+    const response = await axios.put(`${baseUrl}/api/paycards/card/${cardId}`, updatedData, {
       withCredentials: true,
     });
-    dispatch(payCardSlice.actions.editCardSuccess(response.data.updatedCard));
+
+    console.log(response.data.card)
+    dispatch(payCardSlice.actions.editCardSuccess(response.data.card));
   } catch (error) {
     dispatch(
       payCardSlice.actions.editCardFailure(
@@ -123,17 +134,25 @@ export const editCard = (cardId, updatedData) => async (dispatch) => {
 export const deleteCard = (cardId) => async (dispatch) => {
   dispatch(payCardSlice.actions.deleteCardRequest());
   try {
-    await axios.delete(`${baseUrl}/api/cards/${cardId}`, {
+     await axios.delete(`${baseUrl}/api/paycards/card/${cardId}`, {
       withCredentials: true,
     });
+    
     dispatch(payCardSlice.actions.deleteCardSuccess(cardId));
+    return true;
   } catch (error) {
+    console.error("Delete Card Error:", error);
     dispatch(
       payCardSlice.actions.deleteCardFailure(
         error.response?.data?.message || "Failed to delete card"
       )
     );
+    return false;
   }
+};
+
+export const clearErrors = () => (dispatch) => {
+  dispatch(payCardSlice.actions.clearErrors());
 };
 
 export default payCardSlice.reducer;

@@ -64,6 +64,7 @@ export default function ProfileSection({ isEditing, profile, setProfile }) {
             />
           </label>
         </div>
+            <p className={styles.pageTitle}>{profile?.name}</p>
       </div>
       <div className={styles.profileFields}>
         <div>

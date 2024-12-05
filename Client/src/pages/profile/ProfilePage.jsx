@@ -3,13 +3,15 @@ import ProfileSection from "./ProfileSection";
 import styles from "./profile.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, updateUser } from "../../store/slices/userSlice";
+import { getUser, logout, updateUser } from "../../store/slices/userSlice";
 // import { PaymentCardComponent } from "./PaymentCardComponent";
 import PaymentCardsPage from "./PaymentCardPage";
 import Navbar from "../../components/nav/Navbar";
 import Footer from "../../components/footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -40,6 +42,14 @@ export default function ProfilePage() {
       }
     }
   };
+
+  const handleLogout = async()=>{
+    const confirmed = window.confirm("Are you sure you want to logout");
+    if (!confirmed) return;
+
+    dispatch(logout());
+    navigate('/');
+  }
   
 
   useEffect(() => {
@@ -52,19 +62,28 @@ export default function ProfilePage() {
       <div className="container">
         {/* Header */}
         <div className={styles.pageHeader}>
-          <button>
-            <FaArrowLeft />
-          </button>
-          <h1 className={styles.pageTitle}>My Profile</h1>
-          {isEditing ? (
-            <button onClick={handleSave} className={styles.buttonGroup}>
-              Save
+          <div className={styles.btnGroup}>
+
+            <button className={styles.headerIcon}>
+              <FaArrowLeft />
             </button>
-          ) : (
-            <button className={styles.buttonGroup} onClick={toggleEdit}>
-              Edit
-            </button>
-          )}
+            <p className={styles.pageTitle}>My Profile</p>
+          </div>
+          <div className={styles.btnGroup}>
+
+            {isEditing ? (
+              <button onClick={handleSave} className={styles.buttonGroup}>
+                Save
+              </button>
+            ) : (
+              <button className={styles.buttonGroup} onClick={toggleEdit}>
+                Edit
+              </button>
+            )}
+            <button className={styles.logOutBtn} onClick={handleLogout}>
+                Logout
+              </button>
+          </div>
         </div>
 
         <ProfileSection

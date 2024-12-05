@@ -74,3 +74,27 @@ export const getAllRestaurants = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const getRestaurantById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id || id.trim() === "") {
+      return next(CustomErrorHandler.badRequest("Restaurant ID is required"));
+    }
+
+    const restaurant = await Restaurant.findById(id);
+
+    if (!restaurant) {
+      return next(CustomErrorHandler.notFound("Restaurant not found"));
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Restaurant fetched successfully",
+      data: restaurant,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
