@@ -10,6 +10,7 @@ import itemRoutes from "./routes/itemRoutes.js";
 import offerRoutes from "./routes/offerRoutes.js";
 import addressRoutes from "./routes/addressRoutes.js";
 import payCardRoutes from "./routes/payCardRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 import errorHandler from './middleware/errorHandlers.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -53,6 +54,7 @@ app.use("/api/items", itemRoutes);
 app.use("/api/offers", offerRoutes);
 app.use("/api/address", addressRoutes);
 app.use("/api/paycards", payCardRoutes);
+app.use("/api", cartRoutes);
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));

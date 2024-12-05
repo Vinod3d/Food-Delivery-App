@@ -50,5 +50,17 @@ export const getUniqeCategories = () => async (dispatch) => {
   }
 };
 
+export const getCategoryByRestaurantId = (restaurantId) => async (dispatch) => {
+  dispatch(categorySlice.actions.getCategoriesRequest());
+  try {
+    const response = await axios.get(`${baseUrl}/api/categories/${restaurantId}`, {
+      withCredentials: true,
+    });
+    dispatch(categorySlice.actions.getCategoriesSuccess(response.data.data));
+  } catch (error) {
+    dispatch(categorySlice.actions.getCategoriesFailure(error.response?.data?.message || error.message));
+  }
+};
+
 
 export default categorySlice.reducer;
