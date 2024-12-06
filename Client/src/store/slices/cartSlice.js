@@ -23,6 +23,7 @@ const cartSlice = createSlice({
       state.error = action.payload;
     },
     addItemToCart(state, action) {
+      console.log(action.payload.product)
       const existingItemIndex = state.items.findIndex(
         (item) => item.product._id === action.payload.product._id
       );
@@ -72,9 +73,10 @@ export const addToCart = (productId) => async (dispatch) => {
 
 // remove item from the cart
 export const removeFromCart = (productId) => async (dispatch) => {
+  console.log(productId)
   dispatch(cartSlice.actions.cartRequest());
   try {
-    await axios.delete(`${baseUrl}/api/cart/remove/${productId}`, {
+    await axios.delete(`${baseUrl}/api/cart/item/${productId}`, {
       withCredentials: true,
     });
     dispatch(cartSlice.actions.removeItemFromCart({ productId }));

@@ -4,7 +4,8 @@ import { BiBasket } from "react-icons/bi";
 import { MdDeliveryDining, MdStorefront } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCart } from "../../../store/slices/cartSlice";
+import { getCart, removeFromCart } from "../../../store/slices/cartSlice";
+import { MdDeleteForever } from "react-icons/md";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -15,13 +16,18 @@ function Cart() {
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
+
+  const handleRemove = (productId) => {
+
+    console.log(productId)
+    dispatch(removeFromCart(productId));
+  };
+
   const handleShare = () => {
-    // Implement share functionality
     console.log("Share cart");
   };
 
   const handleCopyLink = () => {
-    // Implement copy link functionality
     console.log("Copy link");
   };
 
@@ -48,19 +54,17 @@ function Cart() {
 
             {
                 cart?.items.map((item)=>(
-                    <div className={styles.cartItem} key={item.id}>
+                    <div className={styles.cartItem} key={item._id}>
                         <div className={styles.itemInfo}>
                             <span className={styles.quantity}>{item.quantity}x</span>
                             <div className={styles.itemDetails}>
-                                <h3>{item?.product.name}</h3>
-                                <p>With extra fries</p>
+                              <span className={styles.price}>₹120</span>
+                              <h3>{item?.product.name}</h3>
+                              <p>With extra fries</p>
                             </div>
                         </div>
-                        <div className={styles.itemActions}>
-                            <span className={styles.price}>₹120</span>
-                            <FiX
-                                style={{ marginLeft: 8, cursor: "pointer", color: "#ff0000" }}
-                            />
+                        <div className={styles.itemActions} onClick={() => handleRemove(item.product._id)}>
+                            <MdDeleteForever  style={{fontSize: '25px', marginLeft: 8, cursor: "pointer", color: "#ff0000" }} />
                         </div>
                     </div>
                 ))
@@ -86,7 +90,7 @@ function Cart() {
 
       <div className={styles.total}>
         <span>Total to pay</span>
-        <span>₹{(calculateTotal()-discount)+deliveryFee}</span>
+        <span className={styles.finalAmount}>₹{(calculateTotal()-discount)+deliveryFee}</span>
       </div>
 
       <button className={styles.actionButton}>

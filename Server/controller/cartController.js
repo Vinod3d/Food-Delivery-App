@@ -67,7 +67,7 @@ export const getCart = async (req, res, next) => {
 export const removeFromCart = async (req, res, next) => {
   try {
     const { itemId } = req.params; 
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     const cart = await Cart.findOne({ user: userId });
 
@@ -75,7 +75,7 @@ export const removeFromCart = async (req, res, next) => {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    const itemIndex = cart.items.findIndex((item) => item._id.toString() === itemId);
+    const itemIndex = cart.items.findIndex((item) => item.product.toString() === itemId);
 
     if (itemIndex === -1) {
       return res.status(404).json({ message: "Item not found in the cart" });
@@ -89,6 +89,8 @@ export const removeFromCart = async (req, res, next) => {
     }
 
     await cart.save();
+
+
 
     return res.status(200).json({ message: "Item removed from cart", cart });
   } catch (error) {

@@ -53,19 +53,29 @@
   }
   
   .quantity {
-    background: #f5f5f5;
-    padding: 4px 8px;
-    border-radius: 4px;
+    background: #FC8A06;
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 50px;
     font-size: 14px;
   }
   
   .itemDetails h3 {
     margin: 0;
     font-size: 16px;
+    font-weight: 600;
   }
+
+  .itemDetails span{
+    font-size: 16px;
+    color: #028643;
+
+  }
+
   
   .itemDetails p {
-    margin: 4px 0 0;
+    margin: 0 0 0;
     color: #666;
     font-size: 14px;
   }
@@ -94,6 +104,11 @@
     justify-content: space-between;
     align-items: center;
     margin: 16px 0;
+  }
+
+  .finalAmount{
+    font-size: 25px;
+    font-weight: bold;
   }
   
   .actionButton {

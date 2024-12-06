@@ -13,7 +13,7 @@ import { getOffers } from "../../store/slices/offerSlice.js";
 import { getCategoryByRestaurantId } from "../../store/slices/categorySlice.js";
 import { getItemsByRestaurant } from "../../store/slices/itemSlice.js";
 import { BsPlusCircleFill } from "react-icons/bs";
-import { addToCart } from "../../store/slices/cartSlice.js";
+import { addToCart, getCart } from "../../store/slices/cartSlice.js";
 import Cart from "./cart/Cart.jsx";
 
 const RestaurantPage = () => {
@@ -22,10 +22,12 @@ const RestaurantPage = () => {
   const { offers } = useSelector((state) => state.offer);
   const { categories } = useSelector((state) => state.category);
   const { items } = useSelector((state) => state.item);
+  const cart = useSelector((state) => state.cart);
 
   console.log(categories);
   console.log(offers);
   console.log(items);
+  console.log(cart);
 
   useEffect(() => {
     const restaurantId = "67494b84ebaef9e2d17b7e3c";
@@ -37,6 +39,7 @@ const RestaurantPage = () => {
 
   const handleAddToCart = (productId) => {
     dispatch(addToCart(productId));
+    dispatch(getCart());
   };
 
   return (
@@ -117,7 +120,7 @@ const RestaurantPage = () => {
             </div>
           </div>
           <div className={styles.cart}>
-            <Cart/>
+            <Cart cart={cart}/>
           </div>
         </div>
       </div>
