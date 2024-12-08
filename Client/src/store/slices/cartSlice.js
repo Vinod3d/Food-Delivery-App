@@ -22,8 +22,10 @@ const cartSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
     addItemToCart(state, action) {
-      console.log(action.payload.product)
+      state.loading = false;
+      console.log(action.payload)
       const existingItemIndex = state.items.findIndex(
         (item) => item.product._id === action.payload.product._id
       );
@@ -33,6 +35,7 @@ const cartSlice = createSlice({
         state.items.push(action.payload);
       }
     },
+    
     removeItemFromCart(state, action) {
       state.items = state.items.filter(
         (item) => item.product._id !== action.payload.productId
@@ -56,7 +59,6 @@ export const getCart = () => async (dispatch) => {
 
 // add item to the cart
 export const addToCart = (productId) => async (dispatch) => {
-    console.log(productId)
   dispatch(cartSlice.actions.cartRequest());
   try {
     const response = await axios.post(
@@ -65,15 +67,16 @@ export const addToCart = (productId) => async (dispatch) => {
       { withCredentials: true }
     );
     console.log(response)
-    dispatch(cartSlice.actions.addItemToCart(response.data.cart.items));
+    dispatch(cartSlice.actions.addItemToCart(response.data.addedItem));
+    return true;
   } catch (error) {
     dispatch(cartSlice.actions.cartFailure(error.response.data.message));
+    return false;
   }
 };
 
 // remove item from the cart
 export const removeFromCart = (productId) => async (dispatch) => {
-  console.log(productId)
   dispatch(cartSlice.actions.cartRequest());
   try {
     await axios.delete(`${baseUrl}/api/cart/item/${productId}`, {

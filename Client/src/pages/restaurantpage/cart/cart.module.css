@@ -4,6 +4,7 @@
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
   }
   
   .shareButton {
@@ -122,6 +123,8 @@
     gap: 8px;
     margin: 8px 0;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
   }
   
   .deliveryOptions {
@@ -139,16 +142,64 @@
     font-size: 14px;
   }
   
-  .checkoutButton {
-    background: #008c3f;
-    color: white;
-    padding: 16px;
-    border-radius: 8px;
-    width: 100%;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 16px;
+  .msgIcon{
+    position: absolute;
+    transform: translate(98px, -50px);
+    color: #000;
+    font-size: 35px;
   }
-  
-  
+
+
+  .checkoutButton {
+  background: #008c3f;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+
+
+
+.disabled {
+  background: #FFB1B1 !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+
+.message {
+  position: absolute;
+  background: #03081F;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 26px;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s; /* Smooth transition */
+}
+
+.checkoutButton:hover + .message {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.highlight {
+  color: #FC8A06;
+  text-decoration: underline;
+}

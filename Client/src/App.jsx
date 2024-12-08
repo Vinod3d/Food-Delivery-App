@@ -9,6 +9,9 @@ import Profile from "./pages/profile/ProfilePage";
 import NotFound from "./pages/not_found/NotFound";
 import Address from "./pages/address/Address";
 import RestaurantPage from "./pages/restaurantpage/RestaurantPage";
+import Checkout from "./pages/checkout/Checkout";
+import PaymentPage from "./pages/paymentPage/PaymentPage";
+import Success from "./pages/success/Success";
 
 function App() {
 
@@ -21,6 +24,9 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
           <Route path="/address" element={<PrivateRoute element={<Address/>} />} />
+          <Route path="/checkout" element={<PrivateRoute element={<Checkout/>} />} />
+          <Route path="/payment" element={<PrivateRoute element={<PaymentPage/>} />} />
+          <Route path="/success" element={<PrivateRoute element={<Success/>} />} />
           <Route path="/restaurant" element={<RestaurantPage/>} />
           <Route path='*' element={<NotFound />} />
         </Routes>

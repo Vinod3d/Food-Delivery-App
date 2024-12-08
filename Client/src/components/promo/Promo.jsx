@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { cart } from "../../assets/Index.js";
 import Styles from "./promo.module.css";
@@ -9,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAddresses } from "../../store/slices/addressSlice.js";
 
-const Promo = ({isAuthenticated, user}) => {
+const Promo = ({isAuthenticated, user, toggleCart}) => {
   const userId = user?._id;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ const Promo = ({isAuthenticated, user}) => {
     dispatch(getAddresses(userId));
   }, [user, userId, dispatch])
 
+  const handleCartClick = () => {
+    navigate("/restaurant", { state: { toggleCart: true } });
+  };
 
   const firstName = user?.name.split(' ')[0];
   return (
@@ -60,7 +64,7 @@ const Promo = ({isAuthenticated, user}) => {
         </button>
       )}
     </div>
-    <div className={Styles.cart}>
+    <div className={Styles.cart} onClick={handleCartClick}>
       <button className={Styles.cartButton}>
         <img src={cart} alt="cart" />
         My Cart
@@ -82,7 +86,7 @@ const Promo = ({isAuthenticated, user}) => {
               Login/Signup
             </button>
           )}
-        <button className={Styles.cartButton}>
+        <button className={Styles.cartButton} onClick={handleCartClick}>
           <img src={cart} alt="" />
           My Cart
         </button>

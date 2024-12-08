@@ -8,7 +8,7 @@ import Promo from "../promo/Promo";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-const Navbar = ({ active }) => {
+const Navbar = ({ active, toggleCart }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -22,6 +22,7 @@ const Navbar = ({ active }) => {
     setMenuOpen(false);
   };
 
+
   const firstName = User?.name.split(' ')[0];
 
   return (
@@ -29,6 +30,7 @@ const Navbar = ({ active }) => {
       <Promo 
         isAuthenticated={isAuthenticated}
         user={User}
+        toggleCart={toggleCart}
       />
       <div className="container">
         <div className={Style.navbar}>

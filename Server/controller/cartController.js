@@ -19,7 +19,11 @@ export const addToCart = async (req, res, next) => {
         items: [{ product: productId, quantity: 1 }],
       });
       await cart.save();
-      return res.status(201).json({ message: "Product added to cart", cart });
+
+      const addedItem = cart.items.find(
+        (item) => item.product.toString() === productId
+      );
+      return res.status(201).json({ message: "Product added to cart", addedItem });
     }
 
     const existingProductIndex = cart.items.findIndex(
@@ -32,12 +36,14 @@ export const addToCart = async (req, res, next) => {
       cart.items.push({ product: productId, quantity: 1 });
     }
 
-    cart.updatedAt = Date.now();
     await cart.save();
 
-    res.status(200).json({ message: "Cart updated", cart });
+    const addedItem = cart.items.find(
+      (item) => item.product.toString() === productId
+    );
+
+    res.status(200).json({ message: "Cart updated", addedItem });
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };
