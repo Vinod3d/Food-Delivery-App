@@ -71,8 +71,17 @@
 }
 
 
+/*Search Component*/
 
+.CategoryCards{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
+.CategoryCards .ItemCard{
+  max-width: 440px;
+}
 
 
 

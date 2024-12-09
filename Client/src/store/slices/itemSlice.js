@@ -22,8 +22,34 @@ const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    searchItemsRequest(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    searchItemsSuccess(state, action) {
+      state.loading = false;
+      state.items = action.payload;
+    },
+    searchItemsFailure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
+
+export const searchItems = (query) => async (dispatch) => {
+  dispatch(itemSlice.actions.searchItemsRequest());
+  try {
+    const response = await axios.get(`${baseUrl}/api/items/search`, {
+      params: { query },
+      withCredentials: true,
+    });
+    dispatch(itemSlice.actions.searchItemsSuccess(response.data));
+  } catch (error) {
+    dispatch(itemSlice.actions.searchItemsFailure(error.response?.data?.message || "An error occurred"));
+  }
+};
 
 
 export const getItemsByRestaurant = (restaurantId) => async (dispatch) => {

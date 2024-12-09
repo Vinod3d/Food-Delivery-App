@@ -1,0 +1,87 @@
+.header {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1528px;
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .searchContainer {
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .searchInput {
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    width: 250px;
+    font-size: 14px;
+  }
+  
+  .searchInput:focus {
+    outline: none;
+    border-color: #ff8c00;
+  }
+  
+  .navStrip {
+    margin: 15px 0 ;
+    background-color: #ff8c00;
+    padding: 12px 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .navStrip::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .navList {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    max-width: 1528px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .navItem {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .navItem.active {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      display: none;
+    }
+    
+    .header {
+      padding: 12px 16px;
+    }
+    
+    .title {
+      font-size: 20px;
+    }
+  }
+  
+  

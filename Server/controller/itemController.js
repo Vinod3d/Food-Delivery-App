@@ -92,8 +92,8 @@ export const getItemsByRestaurant = async (req, res, next) => {
 export const getAllItems = async (req, res, next) => {
     try {
       const items = await Item.find()
-        .populate("category", "name icon") // Populates category's name and icon
-        .populate("restaurant", "name logo"); // Populates restaurant's name and logo
+        .populate("category", "name icon")
+        .populate("restaurant", "name logo");
   
       if (!items || items.length === 0) {
         return next(CustomErrorHandler.notFound("No items found"));
@@ -106,4 +106,30 @@ export const getAllItems = async (req, res, next) => {
     } catch (error) {
       return next(error);
     }
+};
+
+
+export const searchItems = async (req, res, next) => {
+  try {
+    const { query } = req.query;
+
+    if (!query) {
+      return next(CustomErrorHandler.badRequest("Search query is required"));
+    }
+
+    const items = await Item.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+      ]
+    });
+
+    if (items.length === 0) {
+      return res.status(404).json({ message: "No items found matching your query" });
+    }
+
+    res.status(200).json(items);
+  } catch (error) {
+    next(error);
+  }
 };
