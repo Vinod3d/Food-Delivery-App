@@ -67,8 +67,11 @@
   }
   
   .navItem.active {
-    text-decoration: underline;
+    background: #000;
+    padding: 5px 10px;
+    border-radius: 50px;
   }
+  
   
   @media (max-width: 768px) {
     .header {
